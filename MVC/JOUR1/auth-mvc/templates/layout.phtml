@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>Exercice Routeur MVC</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li>
+						<a href="index.php">Accueil</a>
+					</li>
+					<li>
+						<a href="index.php?route=inscription">Inscription</a>
+					</li>
+					<li>
+					    <a href="index.php?route=connexion">Connexion</a>
+					</li>
+					<?php
+						// Le lien vers epsace perso une fois la connexion effectuer
+					?>
+				</ul>
+			</nav>
+		</header>
+		<?php
+			if($route === "inscription")
+			{
+			    require "inscription.phtml";
+			} elseif($route === "check-inscription")
+			{
+			    require "check-inscription.phtml";
+			} elseif($route === "connexion")
+			{
+			    require "connexion.phtml";
+			} elseif($route === "check-connexion")
+			{
+			    require "check-connexion.phtml";
+			} elseif($route === "espace-perso")
+			{
+				require "espace-perso.phtml";
+			} else 
+			{
+				require "inscription.phtml";
+			}
+		?>
+	</body>
+</html>

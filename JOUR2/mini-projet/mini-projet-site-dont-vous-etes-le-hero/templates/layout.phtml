@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8" />
+    <title>Le site dont vous êtes le héros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600;800&family=Special+Elite&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body id="home">
+
+    <?php 
+    if ($template === 'choice') {
+        require "templates/partials/choice.phtml"; 
+    } else {
+        require "templates/partials/_home.phtml"; 
+    }
+    ?>
+    <script type="application/javascript" src="assets/js/index.js"></script>
+</body>
+</html>

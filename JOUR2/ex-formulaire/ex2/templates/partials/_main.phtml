@@ -1,0 +1,32 @@
+<main>
+    <h2>
+        <?= $exTitle; ?>
+    </h2>
+    <form method="POST" action="controllers/user-form.php">
+        <fieldset>
+        <label for="mail"><?= $eMail ?></label>
+        <input type="text" name="mail" id="mail"/>
+        </fieldset>
+        
+        <fieldset>
+        <label for="password"><?= $mDP ?></label>
+        <input type="password" name="password" id="password"/>
+        </fieldset>
+        
+        <fieldset>
+        <label for="passwordCheck"><?= $mDPCheck ?></label>
+        <input type="password" name="passwordCheck" id="passwordCheck"/>
+        </fieldset>
+        
+        <fieldset>
+        <p><?= $newsLetter ?></p>
+        
+        <label for="newsLetter">Oui</label>
+        <input type="checkbox" name="newsLetter" id="newsLetter" value="oui"/>
+        </fieldset>
+        
+        <fieldset>
+        <input type="submit" value="Submit"/>
+        </fieldset>
+    </form>
+</main>

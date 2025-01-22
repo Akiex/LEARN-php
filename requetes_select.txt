@@ -1,0 +1,76 @@
+/**********************
+EXERCICE SELECT
+**********************/
+
+/********* Selctionner tout les USER ****************/
+
+SELECT * FROM `users`
+
+/***** Selctionner le USER qui a L'ID 3********/
+
+SELECT * FROM `users`WHERE id=3
+
+/***** Affichez le username de l’user qui a l’id 2********/
+
+SELECT username FROM `users` WHERE id=2
+
+/*Affichez la liste de tous les users du plus grand id au plus petit.*/
+
+SELECT * FROM `users` ORDER BY id DESC
+
+/***** Affichez les 3 derniers users********/
+
+SELECT * FROM `users` ORDER BY id DESC LIMIT 3
+
+/********************
+EXERCICE INSERT
+********************/
+
+/***** Créer un nouvel utilisateur ********/
+INSERT INTO jobs (username, email, job)
+VALUES ("Spiderman", "peter.parker@daily-bugle.com", "1")
+
+
+/*****CREER UN NOUVEAU JOB********/
+INSERT INTO jobs (name)
+VALUES ("Lycéen")
+
+/********************
+EXERCICE UPDATE
+********************/
+
+/*****MODIFIER LE JOB DE SPIDERMAN********/
+UPDATE users
+SET job = 5
+WHERE users.id = 7
+
+/********************
+EXERCICE DELETE
+********************/
+
+/*****DELETE BATMAN********/
+DELETE FROM users
+WHERE users.id = 6
+
+/********************
+EXERCICE JOIN
+********************/
+
+/*****AFFICHER SPIDERMAN ET SON METIER********/
+
+SELECT users.email, jobs.name
+FROM users JOIN jobs
+ON users.job = jobs.id
+WHERE users.username = "Spiderman"
+
+/*****AFFICHER TOUTES INFO USERS ET SON METIER********/
+SELECT users.*, jobs.name 
+FROM users JOIN jobs 
+ON users.job = jobs.id
+
+/********* AFFICHER TOUT LES USER QUI SONT JOURNALISTE ******/
+SELECT user.email 
+FROM users JOIN jobs 
+ON users.job = job.id 
+WHERE jobs.name = "Journaliste"
+

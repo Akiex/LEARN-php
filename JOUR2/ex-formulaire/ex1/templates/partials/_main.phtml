@@ -1,0 +1,14 @@
+<main>
+    <h2>
+        <?= $exTitle; ?>
+    </h2>
+    <form method="POST" action="controllers/user-form.php">
+        <label for="mail"><?= $eMail ?></label>
+        <input type="text" name="mail" id="mail"/>
+        
+        <label for="password"><?= $mDP ?></label>
+        <input type="password" name="password" id="password"/>
+        
+        <input type="submit" value="Submit"/>
+    </form>
+</main>
