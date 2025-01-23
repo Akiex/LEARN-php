@@ -31,5 +31,25 @@ class UserController
         // $userManager = newUserManager();
         // $userManager->findAll();
     }
+    public function checkCreate() : void
+    {
+        if  ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $firstname = $_POST['first_name'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $lastname = $_POST['last_name'] ?? '';
+            
+            $user = new User();
+            $user->setFirstName($firstname);
+            $user->setEmail($email);
+            $user->setLastName($lastname);
+            
+            $userManager = new UserManager();
+            if ($userManager->create($user)) {
+               
+                header('Location: /index.php');
+                exit();
+            }
+        }
+    }
     
 }
