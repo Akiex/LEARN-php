@@ -19,7 +19,7 @@ class UserController
     }
     public function list(): void
     {
-        
+        $route = "list";
         require_once __DIR__. "/../templates/layout.phtml";
     }
     
