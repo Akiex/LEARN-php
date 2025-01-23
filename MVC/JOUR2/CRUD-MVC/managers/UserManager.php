@@ -4,7 +4,7 @@ class UserManager extends AbstractManager
 {
     public function __construct()
     {
-        parent::__construct;
+        parent::__construct();
     }
     
     // 
@@ -13,8 +13,9 @@ class UserManager extends AbstractManager
     
     public function findAll() : array
     {
-        $query = $this->db->query("SELECT * FROM users");
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $this->db->prepare("SELECT * FROM users");
+        $query->execute();
+        $usersData=$query->fetchAll(PDO::FETCH_ASSOC);
         
         $users = [];
         foreach ($usersData as $data) {
@@ -23,14 +24,14 @@ class UserManager extends AbstractManager
         return $users;
     }
     
-    public function findOne(int $id) : array
+    public function findOne(int $id) : ?User
     {
         $query = $this->db->prepare("SELECT * FROM users WHERE id=:id");
         $query->execute(["id" => $id]);
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        $data=$query->fetch(PDO::FETCH_ASSOC);
         
         if ($data) {
-            return new User($data['firstname'], $data['lastname'], $data['email'], $data['id']);
+            return new User($data['first_name'], $data['last_name'], $data['email'], $data['id']);
         }
         return null;
     }
@@ -58,6 +59,6 @@ class UserManager extends AbstractManager
     public function delete(User $user): void
     {
         $query = $this->db->prepare("DELETE FROM users WHERE id = :id");
-        $query->execute(["id" => $id]);
+        $query->execute(["id" => $user-getId()]);
     }
 }
