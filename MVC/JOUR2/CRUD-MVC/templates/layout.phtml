@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<title>Exercice Routeur MVC</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<ul>
+					<li>
+						<a href="index.php">Accueil</a>
+					</li>
+					<li>
+						<a href="index.php?route=show_user">Utilisateurs</a>
+					</li>
+					<li>
+					    <a href="index.php?route=create_user">Crée</a>
+					</li> 
+					<li>
+					    <a href="index.php?route=">Liste</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<?php
+			if($route === "show_user")
+			{
+			    require "show.phtml";
+			} elseif($route === "create_user")
+			{
+			    require "create.phtml";
+			} elseif($route === "update_user")
+			{
+			    require "update.phtml";
+			} else
+			{
+			    require "list.phtml";
+			}
+		?>
+	</body>
+</html>
