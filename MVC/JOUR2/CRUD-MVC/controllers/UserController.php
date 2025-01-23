@@ -25,18 +25,24 @@ class UserController
     }
     public function list(): void
     {
-        $route = "list";
-        require_once __DIR__. "/../templates/layout.phtml";
+        $userManager = newUserManager();
+        $user = $userManager->findAll();
         
-        // $userManager = newUserManager();
-        // $userManager->findAll();
+        require_once __DIR__ . '/../templates/users/list.phtml';
     }
     public function checkCreate() : void
     {
-        if  ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $firstname = $_POST['first_name'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $lastname = $_POST['last_name'] ?? '';
+        if  ($_SERVER['REQUEST_METHOD'] === 'POST') 
+        {
+            if(
+            !empty($_POST['first_name']) &&
+            !empty($_POST['email']) &&
+            !empty($_POST['last_name'])
+            )
+            {
+            $firstname = $_POST['first_name'];
+            $email = $_POST['email'];
+            $lastname = $_POST['last_name'];
             
             $user = new User();
             $user->setFirstName($firstname);
@@ -44,10 +50,14 @@ class UserController
             $user->setLastName($lastname);
             
             $userManager = new UserManager();
-            if ($userManager->create($user)) {
-               
-                header('Location: /index.php');
-                exit();
+                if ($userManager->create($user)) 
+                {
+                   
+                    header('Location: /index.php');
+                    exit();
+                }
+            } else{
+                echo "Tous les champs sont requis.";
             }
         }
     }

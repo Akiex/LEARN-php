@@ -1,5 +1,30 @@
 <main>
-
-        <h1>List des USERS</h1>
-    
+    <h1>Liste des utilisateurs</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                if(empty($users)): ?>
+                    <tr>
+                        <td colspan="4">Aucun utilisateurs trouvé.</td>
+                    </tr>
+                <?php else: ?>
+                <?php foreach ($users as $user): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($user->getId()) ?></td>
+                        <td><?= htmlspecialchars($user->getFirstName()) ?></td>
+                        <td><?= htmlspecialchars($user->getLastName()) ?></td>
+                        <td><?= htmlspecialchars($user->getEmail()) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </tbody>
+        </table>
 </main>
