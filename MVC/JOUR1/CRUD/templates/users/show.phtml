@@ -1,0 +1,26 @@
+
+
+<main>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>Email</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($users as $user): ?>
+                <tr>
+                    <td><?= htmlspecialchars($user->id) ?></td>
+                    <td><?= htmlspecialchars($user->name) ?></td>
+                    <td><?= htmlspecialchars($user->email) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    
+</main>
