@@ -1,5 +1,7 @@
 <main>
-    <h1>
-        SHOW.PHTML
-    </h1>
+    <h1>Détails de l'utilisateur</h1>
+    <p><strong>Prénom :</strong> <?= htmlspecialchars($user->getFirstName()) ?></p>
+    <p><strong>Nom :</strong> <?= htmlspecialchars($user->getLastName()) ?></p>
+    <p><strong>Email :</strong> <?= htmlspecialchars($user->getEmail()) ?></p>
+    <a href="/index.php?action=listUsers">Retour à la liste</a>
 </main>

@@ -2,12 +2,13 @@
 
 class UserController
 {
-    public function show(): void
+    public function show(int $id): void
     {
         $route = "show_user";
+        $userManager = new UserManager();
+        $user = $userManager->findOne($id);
         require_once __DIR__. "/../templates/layout.phtml";
-        // $userManager = newUserManager();
-        // $userManager->findOne();
+        
     }
     public function create(): void
     {
@@ -19,16 +20,21 @@ class UserController
     public function update(): void
     {
         $route = "update_user";
+        $userManager = newUserManager();
+        $userManager->update(); 
+        
         require_once __DIR__. "/../templates/layout.phtml";
-        // $userManager = newUserManager();
-        // $userManager->update();
+        
     }
     public function list(): void
     {
-        $userManager = newUserManager();
+        $route = "list";
+        
+        
+        $userManager = new UserManager();
         $user = $userManager->findAll();
         
-        require_once __DIR__ . '/../templates/users/list.phtml';
+        require_once __DIR__. "/../templates/layout.phtml";
     }
     public function checkCreate() : void
     {
@@ -61,5 +67,6 @@ class UserController
             }
         }
     }
+
     
 }
