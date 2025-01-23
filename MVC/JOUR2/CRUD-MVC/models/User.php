@@ -1,11 +1,18 @@
 <?php
 
 class User {
-    private int $id;
+    private ?int $id = null;
     private string $firstname;
-    private string $email;
     private string $lastname;
+    private string $email;
 
+    public function __construct(string $firstname, string $lastname, string $email, ?int $id = null)
+    {
+        $this->id = $id;
+        $this->firstname = $firstname;
+        $this->lastname = $lastname;
+        $this->email = $email;
+    }
     // Getters et setters
     public function getId(): int {
         return $this->id;
