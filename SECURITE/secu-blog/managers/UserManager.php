@@ -41,4 +41,27 @@ class UserManager extends AbstractManager
             'role' => $user->getRole()
         ]);
     }
+    public function findUserById(int $id): ?User
+        {
+            
+            $query = $this->db->prepare("SELECT * FROM users WHERE id = :id");
+            $query->execute(['id' => $id]);
+        
+           
+            $data = $query->fetch(PDO::FETCH_ASSOC);
+        
+            
+            if ($data) {
+                return new User(
+                    $data['username'],
+                    $data['email'],
+                    $data['password'],
+                    $data['role'],
+                    $data['id']
+                );
+            }
+        
+            
+            return null;
+        }
 }

@@ -63,7 +63,7 @@ class PostManager extends AbstractManager
                 $postData['excerpt'],
                 $postData['content'],
                 $this->findUserById($postData['author']), // Méthode pour récupérer l'objet User
-                $this->findCategoryById($postData['category_id']), // Méthode pour récupérer l'objet Category
+                $this->findOne($postData['category_id']), // Méthode pour récupérer l'objet Category
                 $postData['id']
             );
         }

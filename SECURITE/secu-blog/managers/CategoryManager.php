@@ -7,30 +7,45 @@
 
 class CategoryManager extends AbstractManager
 {
-        public function findAll() : array
-        {
-            $query = $this->db->prepare("SELECT * FROM categories");
-            $query->execute();
-            $categoryData=$query->fetchAll(PDO::FETCH_ASSOC);
-            
-            $category = [];
-            foreach ($categoryData as $data) {
-                $category[] = new User($data['title'], $data['description'], $data['id']);
-            }
-            return $category;
+            public function findAll(): array
+    {
+        // Préparer et exécuter la requête SQL
+        $query = $this->db->prepare("SELECT * FROM categories");
+        $query->execute();
+        
+        // Récupérer les données sous forme associative
+        $categoryData = $query->fetchAll(PDO::FETCH_ASSOC);
+        
+        // Hydrater les objets Category
+        $categories = [];
+        foreach ($categoryData as $data) {
+            $categories[] = new Category(
+                $data['title'], 
+                $data['description'], 
+                $data['id']
+            );
         }
-        public function findOne(int $id) : ?User
-        {
-            $query = $this->db->prepare("SELECT * FROM categories WHERE id=:id");  
-            $parameters = [  
-               "id" => $_GET["id"]  
-            ];  
-            $query->execute($parameters);
-            $data=$query->fetch(PDO::FETCH_ASSOC);
-            
-            if ($data) {
-                return new User($data['title'], $data['description'], $data['id']);
-            }
-            return null;
+        return $categories;
+    }
+
+    // Méthode pour récupérer une catégorie par ID
+    public function findOne(int $id): ?Category
+    {
+        // Préparer et exécuter la requête SQL
+        $query = $this->db->prepare("SELECT * FROM categories WHERE id = :id");
+        $query->execute(['id' => $id]);
+        
+        // Récupérer les données
+        $data = $query->fetch(PDO::FETCH_ASSOC);
+        
+        // Retourner un objet Category ou null si aucune donnée trouvée
+        if ($data) {
+            return new Category(
+                $data['title'], 
+                $data['description'], 
+                $data['id']
+            );
         }
+        return null;
+    }
 }
