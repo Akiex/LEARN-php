@@ -27,7 +27,10 @@ class UserManager extends AbstractManager
     public function findOne(int $id) : ?User
     {
         $query = $this->db->prepare("SELECT * FROM users WHERE id=:id");
-        $query->execute(["id" => $id]);
+        $parameters = [  
+           "id" => $_GET["id"]  
+        ];  
+        $query->execute($parameters);
         $data=$query->fetch(PDO::FETCH_ASSOC);
         
         if ($data) {
